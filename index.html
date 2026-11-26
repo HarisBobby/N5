@@ -127,6 +127,17 @@ textarea{width:100%;border:1px solid var(--bd);border-radius:12px;background:var
 .pr .ph b{color:var(--pk);font-size:14px}
 .pr .pf{display:inline-block;margin:4px 0;background:var(--c);border:1px solid var(--bd);color:var(--bl);font-size:12.5px;font-weight:700;border-radius:99px;padding:2px 10px;max-width:100%;overflow-wrap:anywhere}
 .pr .pe{font-size:17px;line-height:2}.pr .pe span{display:block;font-size:12.5px;line-height:1.4;color:var(--mu)}
+.srb .btn{flex:1;padding:16px 8px;font-size:18px;border-radius:16px}.srb .btn.alt{padding:14px 8px;font-size:17px}
+#fb .fc{min-height:300px}
+.ktab{flex-wrap:nowrap}.ktab button{flex:1 1 0;min-width:0;padding:12px 4px;font-size:15px}
+.dz{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--c);border:1px solid var(--bd);border-radius:16px;padding:12px 14px;margin-top:10px;font:inherit;color:var(--tx);cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.dz .dt{flex:1;min-width:0}.dz .dt b{display:block;font-size:16px}.dz .dt small{display:block;color:var(--mu);font-size:13px;line-height:1.4;margin-top:2px}
+.dz .dn,.dz .dn0{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:15px;background:var(--pk);color:#fff}
+.dz .dn0{background:var(--bl)}.dz.dd .dn{background:var(--gr)}
+.dz .di{flex:none;font-size:26px;color:var(--pk);opacity:.85;width:34px;text-align:center}
+.dz:active{transform:scale(.99)}
+.dbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}.dbar .btn{padding:8px 14px}
+.dfoot{margin-top:18px}
 .nc{background:var(--softb);border:1px solid var(--bd);border-radius:12px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between;gap:6px}
 .song-box{background:linear-gradient(135deg,var(--soft),var(--softb));border:1px solid var(--bd);border-radius:14px;padding:12px 14px;margin:10px 0}
 .v-card{display:flex;align-items:center;justify-content:space-between;background:var(--c);border:1px solid var(--bd);border-radius:12px;padding:10px 12px;margin-bottom:8px;gap:8px}
@@ -541,6 +552,892 @@ const PEMULA = {
       ["大(おお)きい","ookii","besar (Adj-い)"],["小(ちい)さい","chiisai","kecil (Adj-い)"],["新(あたら)しい","atarashii","baru (Adj-い)"],["古(ふる)い","furui","lama / tua (Adj-い)"],
       ["高(たか)い","takai","tinggi / mahal (Adj-い)"],["安(やす)い","yasui","murah (Adj-い)"],["おいしい","oishii","enak (Adj-い)"],["暑(あつ)い／寒(さむ)い","atsui / samui","panas / dingin cuaca (Adj-い)"],
       ["きれい（な）","kirei (na)","cantik / bersih (Adj-な)"],["静(しず)か（な）","shizuka (na)","tenang / sepi (Adj-な)"],["元気(げんき)（な）","genki (na)","sehat / bersemangat (Adj-な)"],["有名(ゆうめい)（な）","yuumei (na)","terkenal (Adj-な)"]
+    ]},
+    { g:"Waktu & Hari Ini", items:[
+      ["今日(きょう)", "kyou", "hari ini"],
+      ["明日(あした)", "ashita", "besok"],
+      ["昨日(きのう)", "kinou", "kemarin"],
+      ["今(いま)", "ima", "sekarang"],
+      ["毎日(まいにち)", "mainichi", "setiap hari"],
+      ["毎朝(まいあさ)", "maiasa", "setiap pagi"],
+      ["朝(あさ)", "asa", "pagi"],
+      ["昼(ひる)", "hiru", "siang"],
+      ["夜(よる)", "yoru", "malam"],
+      ["午前(ごぜん)", "gozen", "pagi (AM)"],
+      ["午後(ごご)", "gogo", "siang / sore (PM)"],
+      ["今年(ことし)", "kotoshi", "tahun ini"],
+      ["去年(きょねん)", "kyonen", "tahun lalu"],
+      ["来年(らいねん)", "rainen", "tahun depan"],
+      ["誕生日(たんじょうび)", "tanjoubi", "ulang tahun"],
+      ["休(やす)み", "yasumi", "libur / istirahat"]
+    ]},
+    { g:"Hari & Minggu", items:[
+      ["月曜日(げつようび)", "getsuyoubi", "hari Senin"],
+      ["火曜日(かようび)", "kayoubi", "hari Selasa"],
+      ["水曜日(すいようび)", "suiyoubi", "hari Rabu"],
+      ["木曜日(もくようび)", "mokuyoubi", "hari Kamis"],
+      ["金曜日(きんようび)", "kinyoubi", "hari Jumat"],
+      ["土曜日(どようび)", "doyoubi", "hari Sabtu"],
+      ["日曜日(にちようび)", "nichiyoubi", "hari Minggu"],
+      ["何曜日(なんようび)", "nanyoubi", "hari apa"],
+      ["先週(せんしゅう)", "senshuu", "minggu lalu"],
+      ["今週(こんしゅう)", "konshuu", "minggu ini"],
+      ["来週(らいしゅう)", "raishuu", "minggu depan"],
+      ["先月(せんげつ)", "sengetsu", "bulan lalu"],
+      ["今月(こんげつ)", "kongetsu", "bulan ini"],
+      ["来月(らいげつ)", "raigetsu", "bulan depan"],
+      ["週末(しゅうまつ)", "shuumatsu", "akhir pekan"]
+    ]},
+    { g:"Kata Kerja Harian", items:[
+      ["食(た)べる", "taberu", "makan"],
+      ["飲(の)む", "nomu", "minum"],
+      ["見(み)る", "miru", "melihat / menonton"],
+      ["聞(き)く", "kiku", "mendengar / bertanya"],
+      ["読(よ)む", "yomu", "membaca"],
+      ["書(か)く", "kaku", "menulis"],
+      ["話(はな)す", "hanasu", "berbicara"],
+      ["行(い)く", "iku", "pergi"],
+      ["来(く)る", "kuru", "datang"],
+      ["帰(かえ)る", "kaeru", "pulang"],
+      ["買(か)う", "kau", "membeli"],
+      ["会(あ)う", "au", "bertemu"],
+      ["起(お)きる", "okiru", "bangun"],
+      ["寝(ね)る", "neru", "tidur"],
+      ["する", "suru", "melakukan"],
+      ["勉強(べんきょう)する", "benkyou suru", "belajar"],
+      ["働(はたら)く", "hataraku", "bekerja"],
+      ["休(やす)む", "yasumu", "beristirahat / libur"]
+    ]},
+    { g:"Kata Kerja Aktivitas", items:[
+      ["使(つか)う", "tsukau", "menggunakan"],
+      ["待(ま)つ", "matsu", "menunggu"],
+      ["持(も)つ", "motsu", "membawa / memegang"],
+      ["歩(ある)く", "aruku", "berjalan"],
+      ["走(はし)る", "hashiru", "berlari"],
+      ["乗(の)る", "noru", "naik (kendaraan)"],
+      ["降(お)りる", "oriru", "turun"],
+      ["開(あ)ける", "akeru", "membuka"],
+      ["閉(し)める", "shimeru", "menutup"],
+      ["教(おし)える", "oshieru", "mengajar / memberi tahu"],
+      ["習(なら)う", "narau", "belajar (dari guru)"],
+      ["泳(およ)ぐ", "oyogu", "berenang"],
+      ["歌(うた)う", "utau", "bernyanyi"],
+      ["作(つく)る", "tsukuru", "membuat"],
+      ["知(し)る", "shiru", "mengetahui"],
+      ["入(はい)る", "hairu", "masuk"],
+      ["出(で)る", "deru", "keluar"],
+      ["住(す)む", "sumu", "tinggal"],
+      ["遊(あそ)ぶ", "asobu", "bermain"],
+      ["洗(あら)う", "arau", "mencuci"],
+      ["売(う)る", "uru", "menjual"],
+      ["思(おも)う", "omou", "berpikir / merasa"]
+    ]},
+    { g:"Kata Sifat-い Lanjutan", items:[
+      ["長(なが)い", "nagai", "panjang (Adj-い)"],
+      ["短(みじか)い", "mijikai", "pendek (Adj-い)"],
+      ["低(ひく)い", "hikui", "rendah (Adj-い)"],
+      ["多(おお)い", "ooi", "banyak (Adj-い)"],
+      ["少(すく)ない", "sukunai", "sedikit (Adj-い)"],
+      ["近(ちか)い", "chikai", "dekat (Adj-い)"],
+      ["遠(とお)い", "tooi", "jauh (Adj-い)"],
+      ["早(はや)い", "hayai", "cepat / awal (Adj-い)"],
+      ["遅(おそ)い", "osoi", "lambat / terlambat (Adj-い)"],
+      ["暑(あつ)い", "atsui", "panas (cuaca) (Adj-い)"],
+      ["寒(さむ)い", "samui", "dingin (cuaca) (Adj-い)"],
+      ["熱(あつ)い", "atsui", "panas (benda) (Adj-い)"],
+      ["冷(つめ)たい", "tsumetai", "dingin (benda) (Adj-い)"],
+      ["面白(おもしろ)い", "omoshiroi", "menarik / lucu (Adj-い)"],
+      ["難(むずか)しい", "muzukashii", "sulit (Adj-い)"],
+      ["易(やさ)しい", "yasashii", "mudah / baik hati (Adj-い)"],
+      ["忙(いそが)しい", "isogashii", "sibuk (Adj-い)"],
+      ["楽(たの)しい", "tanoshii", "menyenangkan (Adj-い)"],
+      ["嬉(うれ)しい", "ureshii", "senang (Adj-い)"],
+      ["悲(かな)しい", "kanashii", "sedih (Adj-い)"],
+      ["重(おも)い", "omoi", "berat (Adj-い)"],
+      ["軽(かる)い", "karui", "ringan (Adj-い)"],
+      ["明(あか)るい", "akarui", "terang / ceria (Adj-い)"],
+      ["暗(くら)い", "kurai", "gelap (Adj-い)"],
+      ["強(つよ)い", "tsuyoi", "kuat (Adj-い)"],
+      ["弱(よわ)い", "yowai", "lemah (Adj-い)"],
+      ["悪(わる)い", "warui", "buruk (Adj-い)"],
+      ["可愛(かわい)い", "kawaii", "imut (Adj-い)"]
+    ]},
+    { g:"Kata Sifat-な Lanjutan", items:[
+      ["賑(にぎ)やか（な）", "nigiyaka (na)", "ramai (Adj-な)"],
+      ["親切(しんせつ)（な）", "shinsetsu (na)", "ramah / baik hati (Adj-な)"],
+      ["便利(べんり)（な）", "benri (na)", "praktis (Adj-な)"],
+      ["好(す)き（な）", "suki (na)", "suka (Adj-な)"],
+      ["嫌(きら)い（な）", "kirai (na)", "tidak suka (Adj-な)"],
+      ["上手(じょうず)（な）", "jouzu (na)", "pandai (Adj-な)"],
+      ["下手(へた)（な）", "heta (na)", "kurang pandai (Adj-な)"],
+      ["大変(たいへん)（な）", "taihen (na)", "berat / repot (Adj-な)"],
+      ["大丈夫(だいじょうぶ)（な）", "daijoubu (na)", "tidak apa-apa (Adj-な)"],
+      ["暇(ひま)（な）", "hima (na)", "senggang (Adj-な)"],
+      ["大切(たいせつ)（な）", "taisetsu (na)", "penting / berharga (Adj-な)"],
+      ["簡単(かんたん)（な）", "kantan (na)", "mudah / sederhana (Adj-な)"]
+    ]},
+    { g:"Makanan Lanjutan", items:[
+      ["朝(あさ)ごはん", "asagohan", "sarapan"],
+      ["昼(ひる)ごはん", "hirugohan", "makan siang"],
+      ["晩(ばん)ごはん", "bangohan", "makan malam"],
+      ["弁当(べんとう)", "bentou", "bekal makanan"],
+      ["料理(りょうり)", "ryouri", "masakan"],
+      ["食(た)べ物(もの)", "tabemono", "makanan"],
+      ["飲(の)み物(もの)", "nomimono", "minuman"],
+      ["牛肉(ぎゅうにく)", "gyuuniku", "daging sapi"],
+      ["鶏肉(とりにく)", "toriniku", "daging ayam"],
+      ["豚肉(ぶたにく)", "butaniku", "daging babi"],
+      ["みかん", "mikan", "jeruk mandarin"],
+      ["バナナ", "banana", "pisang"],
+      ["ビール", "biiru", "bir"],
+      ["お酒(さけ)", "osake", "minuman beralkohol / sake"],
+      ["塩(しお)", "shio", "garam"],
+      ["砂糖(さとう)", "satou", "gula"],
+      ["寿司(すし)", "sushi", "sushi"],
+      ["ラーメン", "raamen", "ramen"]
+    ]},
+    { g:"Tempat Lanjutan", items:[
+      ["店(みせ)", "mise", "toko"],
+      ["喫茶店(きっさてん)", "kissaten", "kafe"],
+      ["レストラン", "resutoran", "restoran"],
+      ["コンビニ", "konbini", "minimarket"],
+      ["ホテル", "hoteru", "hotel"],
+      ["映画館(えいがかん)", "eigakan", "bioskop"],
+      ["公園(こうえん)", "kouen", "taman"],
+      ["空港(くうこう)", "kuukou", "bandara"],
+      ["教室(きょうしつ)", "kyoushitsu", "ruang kelas"],
+      ["部屋(へや)", "heya", "kamar / ruangan"],
+      ["台所(だいどころ)", "daidokoro", "dapur"],
+      ["庭(にわ)", "niwa", "halaman / kebun"],
+      ["町(まち)", "machi", "kota kecil / kawasan"],
+      ["国(くに)", "kuni", "negara"],
+      ["外国(がいこく)", "gaikoku", "luar negeri"]
+    ]},
+    { g:"Benda Sehari-hari", items:[
+      ["本(ほん)", "hon", "buku"],
+      ["辞書(じしょ)", "jisho", "kamus"],
+      ["ノート", "nooto", "buku catatan"],
+      ["鉛筆(えんぴつ)", "enpitsu", "pensil"],
+      ["ペン", "pen", "pulpen"],
+      ["机(つくえ)", "tsukue", "meja"],
+      ["椅子(いす)", "isu", "kursi"],
+      ["窓(まど)", "mado", "jendela"],
+      ["傘(かさ)", "kasa", "payung"],
+      ["鞄(かばん)", "kaban", "tas"],
+      ["時計(とけい)", "tokei", "jam"],
+      ["眼鏡(めがね)", "megane", "kacamata"],
+      ["靴(くつ)", "kutsu", "sepatu"],
+      ["服(ふく)", "fuku", "pakaian"],
+      ["電話(でんわ)", "denwa", "telepon"],
+      ["テレビ", "terebi", "televisi"],
+      ["写真(しゃしん)", "shashin", "foto"],
+      ["新聞(しんぶん)", "shinbun", "koran"],
+      ["手紙(てがみ)", "tegami", "surat"],
+      ["お金(かね)", "okane", "uang"],
+      ["切符(きっぷ)", "kippu", "tiket"],
+      ["財布(さいふ)", "saifu", "dompet"]
+    ]},
+    { g:"Alam & Cuaca", items:[
+      ["天気(てんき)", "tenki", "cuaca"],
+      ["雨(あめ)", "ame", "hujan"],
+      ["雪(ゆき)", "yuki", "salju"],
+      ["風(かぜ)", "kaze", "angin"],
+      ["空(そら)", "sora", "langit"],
+      ["山(やま)", "yama", "gunung"],
+      ["川(かわ)", "kawa", "sungai"],
+      ["海(うみ)", "umi", "laut"],
+      ["木(き)", "ki", "pohon"],
+      ["花(はな)", "hana", "bunga"],
+      ["犬(いぬ)", "inu", "anjing"],
+      ["猫(ねこ)", "neko", "kucing"],
+      ["鳥(とり)", "tori", "burung"],
+      ["春(はる)", "haru", "musim semi"],
+      ["夏(なつ)", "natsu", "musim panas"],
+      ["秋(あき)", "aki", "musim gugur"],
+      ["冬(ふゆ)", "fuyu", "musim dingin"],
+      ["晴(は)れ", "hare", "cerah"],
+      ["曇(くも)り", "kumori", "berawan"]
+    ]},
+    { g:"Tubuh & Kesehatan", items:[
+      ["体(からだ)", "karada", "tubuh"],
+      ["頭(あたま)", "atama", "kepala"],
+      ["顔(かお)", "kao", "wajah"],
+      ["目(め)", "me", "mata"],
+      ["耳(みみ)", "mimi", "telinga"],
+      ["口(くち)", "kuchi", "mulut"],
+      ["鼻(はな)", "hana", "hidung"],
+      ["手(て)", "te", "tangan"],
+      ["足(あし)", "ashi", "kaki"],
+      ["歯(は)", "ha", "gigi"],
+      ["お腹(なか)", "onaka", "perut"],
+      ["声(こえ)", "koe", "suara"],
+      ["病気(びょうき)", "byouki", "sakit / penyakit"],
+      ["薬(くすり)", "kusuri", "obat"],
+      ["風邪(かぜ)", "kaze", "flu / masuk angin"],
+      ["熱(ねつ)", "netsu", "demam"],
+      ["医者(いしゃ)", "isha", "dokter"]
+    ]},
+    { g:"Transportasi & Arah", items:[
+      ["電車(でんしゃ)", "densha", "kereta listrik"],
+      ["バス", "basu", "bus"],
+      ["車(くるま)", "kuruma", "mobil"],
+      ["自転車(じてんしゃ)", "jitensha", "sepeda"],
+      ["飛行機(ひこうき)", "hikouki", "pesawat"],
+      ["タクシー", "takushii", "taksi"],
+      ["地下鉄(ちかてつ)", "chikatetsu", "kereta bawah tanah"],
+      ["船(ふね)", "fune", "kapal"],
+      ["道(みち)", "michi", "jalan"],
+      ["右(みぎ)", "migi", "kanan"],
+      ["左(ひだり)", "hidari", "kiri"],
+      ["前(まえ)", "mae", "depan / sebelum"],
+      ["後(うし)ろ", "ushiro", "belakang"],
+      ["上(うえ)", "ue", "atas"],
+      ["下(した)", "shita", "bawah"],
+      ["中(なか)", "naka", "dalam / tengah"],
+      ["外(そと)", "soto", "luar"],
+      ["隣(となり)", "tonari", "sebelah"],
+      ["近(ちか)く", "chikaku", "dekat / sekitar"],
+      ["北(きた)", "kita", "utara"],
+      ["南(みなみ)", "minami", "selatan"],
+      ["東(ひがし)", "higashi", "timur"],
+      ["西(にし)", "nishi", "barat"]
+    ]},
+    { g:"Sekolah & Pekerjaan", items:[
+      ["仕事(しごと)", "shigoto", "pekerjaan"],
+      ["会社員(かいしゃいん)", "kaishain", "karyawan"],
+      ["看護師(かんごし)", "kangoshi", "perawat"],
+      ["警察官(けいさつかん)", "keisatsukan", "polisi"],
+      ["店員(てんいん)", "ten'in", "pegawai toko"],
+      ["運転手(うんてんしゅ)", "untenshu", "sopir"],
+      ["歌手(かしゅ)", "kashu", "penyanyi"],
+      ["授業(じゅぎょう)", "jugyou", "pelajaran / kelas"],
+      ["宿題(しゅくだい)", "shukudai", "pekerjaan rumah"],
+      ["試験(しけん)", "shiken", "ujian"],
+      ["質問(しつもん)", "shitsumon", "pertanyaan"],
+      ["答(こた)え", "kotae", "jawaban"],
+      ["問題(もんだい)", "mondai", "soal / masalah"],
+      ["趣味(しゅみ)", "shumi", "hobi"],
+      ["旅行(りょこう)", "ryokou", "perjalanan / wisata"],
+      ["留学生(りゅうがくせい)", "ryuugakusei", "mahasiswa asing"],
+      ["日本語(にほんご)", "nihongo", "bahasa Jepang"],
+      ["英語(えいご)", "eigo", "bahasa Inggris"],
+      ["名前(なまえ)", "namae", "nama"]
+    ]},
+    { g:"Warna", items:[
+      ["色(いろ)", "iro", "warna"],
+      ["赤(あか)", "aka", "merah"],
+      ["青(あお)", "ao", "biru"],
+      ["白(しろ)", "shiro", "putih"],
+      ["黒(くろ)", "kuro", "hitam"],
+      ["黄色(きいろ)", "kiiro", "kuning"],
+      ["緑(みどり)", "midori", "hijau"],
+      ["茶色(ちゃいろ)", "chairo", "cokelat"],
+      ["赤(あか)い", "akai", "merah (Adj-い)"],
+      ["青(あお)い", "aoi", "biru (Adj-い)"],
+      ["白(しろ)い", "shiroi", "putih (Adj-い)"],
+      ["黒(くろ)い", "kuroi", "hitam (Adj-い)"]
+    ]},
+    { g:"Kata Keterangan", items:[
+      ["とても", "totemo", "sangat"],
+      ["ちょっと", "chotto", "sedikit / sebentar"],
+      ["少(すこ)し", "sukoshi", "sedikit"],
+      ["たくさん", "takusan", "banyak"],
+      ["もう", "mou", "sudah / lagi"],
+      ["まだ", "mada", "belum / masih"],
+      ["よく", "yoku", "sering / dengan baik"],
+      ["いつも", "itsumo", "selalu"],
+      ["時々(ときどき)", "tokidoki", "kadang-kadang"],
+      ["たいてい", "taitei", "biasanya"],
+      ["全然(ぜんぜん)", "zenzen", "sama sekali (+ negatif)"],
+      ["あまり", "amari", "tidak begitu (+ negatif)"],
+      ["一番(いちばん)", "ichiban", "paling / nomor satu"],
+      ["一緒(いっしょ)に", "issho ni", "bersama-sama"],
+      ["全部(ぜんぶ)", "zenbu", "semuanya"],
+      ["すぐ", "sugu", "segera"],
+      ["それから", "sorekara", "lalu / setelah itu"],
+      ["でも", "demo", "tetapi"],
+      ["だから", "dakara", "karena itu"],
+      ["そして", "soshite", "dan juga / kemudian"]
+    ]},
+    { g:"Kata Tanya", items:[
+      ["何(なに)", "nani", "apa"],
+      ["誰(だれ)", "dare", "siapa"],
+      ["いつ", "itsu", "kapan"],
+      ["どこ", "doko", "di mana"],
+      ["どれ", "dore", "yang mana (dari 3+)"],
+      ["どう", "dou", "bagaimana"],
+      ["どうして", "doushite", "mengapa"],
+      ["いくら", "ikura", "berapa harganya"],
+      ["いくつ", "ikutsu", "berapa (jumlah) / umur berapa"],
+      ["何時(なんじ)", "nanji", "jam berapa"],
+      ["何人(なんにん)", "nannin", "berapa orang"],
+      ["どんな", "donna", "yang seperti apa"]
+    ]},
+    { g:"Kata Kerja Tambahan", items:[
+      ["立(た)つ", "tatsu", "berdiri"],
+      ["座(すわ)る", "suwaru", "duduk"],
+      ["死(し)ぬ", "shinu", "mati"],
+      ["疲(つか)れる", "tsukareru", "lelah"],
+      ["忘(わす)れる", "wasureru", "lupa"],
+      ["覚(おぼ)える", "oboeru", "mengingat / menghafal"],
+      ["考(かんが)える", "kangaeru", "memikirkan"],
+      ["答(こた)える", "kotaeru", "menjawab"],
+      ["呼(よ)ぶ", "yobu", "memanggil"],
+      ["置(お)く", "oku", "meletakkan"],
+      ["取(と)る", "toru", "mengambil"],
+      ["貸(か)す", "kasu", "meminjamkan"],
+      ["借(か)りる", "kariru", "meminjam"],
+      ["返(かえ)す", "kaesu", "mengembalikan"],
+      ["送(おく)る", "okuru", "mengirim"],
+      ["切(き)る", "kiru", "memotong"],
+      ["消(け)す", "kesu", "mematikan / menghapus"],
+      ["点(つ)ける", "tsukeru", "menyalakan"],
+      ["掛(か)ける", "kakeru", "menggantung / memasang (telepon)"],
+      ["止(と)まる", "tomaru", "berhenti"],
+      ["曲(ま)がる", "magaru", "berbelok"],
+      ["渡(わた)る", "wataru", "menyeberang"],
+      ["着(つ)く", "tsuku", "tiba"],
+      ["始(はじ)まる", "hajimaru", "mulai"],
+      ["終(お)わる", "owaru", "selesai"],
+      ["手伝(てつだ)う", "tetsudau", "membantu"],
+      ["泣(な)く", "naku", "menangis"],
+      ["笑(わら)う", "warau", "tertawa"],
+      ["怒(おこ)る", "okoru", "marah"],
+      ["困(こま)る", "komaru", "kesulitan"],
+      ["脱(ぬ)ぐ", "nugu", "melepas (pakaian)"],
+      ["履(は)く", "haku", "memakai (sepatu / celana)"],
+      ["浴(あ)びる", "abiru", "mandi (shower)"],
+      ["見(み)せる", "miseru", "menunjukkan"],
+      ["見(み)える", "mieru", "terlihat"],
+      ["聞(き)こえる", "kikoeru", "terdengar"],
+      ["要(い)る", "iru", "perlu"],
+      ["生(う)まれる", "umareru", "lahir"],
+      ["あげる", "ageru", "memberi"],
+      ["もらう", "morau", "menerima"],
+      ["くれる", "kureru", "memberi (kepada saya)"],
+      ["分(わ)かる", "wakaru", "mengerti"],
+      ["ある", "aru", "ada (benda mati)"],
+      ["いる", "iru", "ada (makhluk hidup)"],
+      ["降(ふ)る", "furu", "turun (hujan / salju)"],
+      ["吹(ふ)く", "fuku", "berhembus"],
+      ["頑張(がんば)る", "ganbaru", "berusaha keras"]
+    ]},
+    { g:"Kata Kerja + する", items:[
+      ["散歩(さんぽ)する", "sanpo suru", "jalan-jalan"],
+      ["結婚(けっこん)する", "kekkon suru", "menikah"],
+      ["掃除(そうじ)する", "souji suru", "membersihkan"],
+      ["洗濯(せんたく)する", "sentaku suru", "mencuci pakaian"],
+      ["練習(れんしゅう)する", "renshuu suru", "berlatih"],
+      ["電話(でんわ)する", "denwa suru", "menelepon"],
+      ["食事(しょくじ)する", "shokuji suru", "makan"],
+      ["料理(りょうり)する", "ryouri suru", "memasak"],
+      ["旅行(りょこう)する", "ryokou suru", "bepergian"],
+      ["質問(しつもん)する", "shitsumon suru", "bertanya"],
+      ["買(か)い物(もの)する", "kaimono suru", "berbelanja"],
+      ["運動(うんどう)する", "undou suru", "berolahraga"],
+      ["留学(りゅうがく)する", "ryuugaku suru", "belajar di luar negeri"],
+      ["心配(しんぱい)する", "shinpai suru", "khawatir"]
+    ]},
+    { g:"Penghitung & Jumlah", items:[
+      ["一人(ひとり)", "hitori", "satu orang"],
+      ["二人(ふたり)", "futari", "dua orang"],
+      ["三人(さんにん)", "sannin", "tiga orang"],
+      ["一(ひと)つ", "hitotsu", "satu buah"],
+      ["二(ふた)つ", "futatsu", "dua buah"],
+      ["三(みっ)つ", "mittsu", "tiga buah"],
+      ["四(よっ)つ", "yottsu", "empat buah"],
+      ["五(いつ)つ", "itsutsu", "lima buah"],
+      ["六(むっ)つ", "muttsu", "enam buah"],
+      ["七(なな)つ", "nanatsu", "tujuh buah"],
+      ["八(やっ)つ", "yattsu", "delapan buah"],
+      ["九(ここの)つ", "kokonotsu", "sembilan buah"],
+      ["十(とお)", "too", "sepuluh buah"],
+      ["一枚(いちまい)", "ichimai", "satu lembar"],
+      ["一本(いっぽん)", "ippon", "satu batang (benda panjang)"],
+      ["一台(いちだい)", "ichidai", "satu unit (mesin / kendaraan)"],
+      ["一冊(いっさつ)", "issatsu", "satu buku"],
+      ["一匹(いっぴき)", "ippiki", "satu ekor (hewan kecil)"],
+      ["一杯(いっぱい)", "ippai", "segelas / penuh"],
+      ["一個(いっこ)", "ikko", "satu buah (benda kecil)"],
+      ["一歳(いっさい)", "issai", "umur satu tahun"],
+      ["二十歳(はたち)", "hatachi", "umur 20 tahun"],
+      ["何歳(なんさい)", "nansai", "umur berapa"],
+      ["一階(いっかい)", "ikkai", "lantai satu"],
+      ["半分(はんぶん)", "hanbun", "setengah"]
+    ]},
+    { g:"Pakaian & Peralatan Rumah", items:[
+      ["帽子(ぼうし)", "boushi", "topi"],
+      ["シャツ", "shatsu", "kemeja"],
+      ["ズボン", "zubon", "celana"],
+      ["スカート", "sukaato", "rok"],
+      ["上着(うわぎ)", "uwagi", "jaket / baju luar"],
+      ["着物(きもの)", "kimono", "kimono"],
+      ["靴下(くつした)", "kutsushita", "kaus kaki"],
+      ["コート", "kooto", "mantel"],
+      ["ネクタイ", "nekutai", "dasi"],
+      ["玄関(げんかん)", "genkan", "pintu masuk rumah"],
+      ["階段(かいだん)", "kaidan", "tangga"],
+      ["風呂(ふろ)", "furo", "bak mandi"],
+      ["壁(かべ)", "kabe", "dinding"],
+      ["ベッド", "beddo", "tempat tidur"],
+      ["テーブル", "teeburu", "meja makan"],
+      ["冷蔵庫(れいぞうこ)", "reizouko", "kulkas"],
+      ["電気(でんき)", "denki", "listrik / lampu"],
+      ["洗濯機(せんたくき)", "sentakuki", "mesin cuci"],
+      ["エアコン", "eakon", "AC"],
+      ["カーテン", "kaaten", "tirai"],
+      ["棚(たな)", "tana", "rak"],
+      ["箱(はこ)", "hako", "kotak"],
+      ["皿(さら)", "sara", "piring"],
+      ["コップ", "koppu", "gelas"],
+      ["箸(はし)", "hashi", "sumpit"],
+      ["フォーク", "fooku", "garpu"],
+      ["ナイフ", "naifu", "pisau"],
+      ["スプーン", "supuun", "sendok"]
+    ]},
+    { g:"Hobi, Olahraga & Katakana", items:[
+      ["パソコン", "pasokon", "komputer"],
+      ["カメラ", "kamera", "kamera"],
+      ["ラジオ", "rajio", "radio"],
+      ["エレベーター", "erebeetaa", "lift"],
+      ["プール", "puuru", "kolam renang"],
+      ["テニス", "tenisu", "tenis"],
+      ["サッカー", "sakkaa", "sepak bola"],
+      ["スポーツ", "supootsu", "olahraga"],
+      ["野球(やきゅう)", "yakyuu", "bisbol"],
+      ["スキー", "sukii", "ski"],
+      ["ピアノ", "piano", "piano"],
+      ["ギター", "gitaa", "gitar"],
+      ["映画(えいが)", "eiga", "film"],
+      ["音楽(おんがく)", "ongaku", "musik"],
+      ["歌(うた)", "uta", "lagu"],
+      ["絵(え)", "e", "gambar / lukisan"],
+      ["ゲーム", "geemu", "permainan"],
+      ["メール", "meeru", "surel / email"],
+      ["アルバイト", "arubaito", "kerja paruh waktu"],
+      ["パーティー", "paatii", "pesta"],
+      ["プレゼント", "purezento", "hadiah"],
+      ["ジュース", "juusu", "jus"],
+      ["ケーキ", "keeki", "kue"],
+      ["カレー", "karee", "kari"],
+      ["サラダ", "sarada", "salad"],
+      ["ハンバーガー", "hanbaagaa", "hamburger"],
+      ["アイスクリーム", "aisukuriimu", "es krim"],
+      ["チョコレート", "chokoreeto", "cokelat"],
+      ["ボールペン", "boorupen", "bolpoin"],
+      ["コピー", "kopii", "fotokopi"],
+      ["ポスト", "posuto", "kotak pos"]
+    ]},
+    { g:"Orang & Hubungan", items:[
+      ["男(おとこ)の人(ひと)", "otoko no hito", "laki-laki"],
+      ["女(おんな)の人(ひと)", "onna no hito", "perempuan"],
+      ["男(おとこ)の子(こ)", "otoko no ko", "anak laki-laki"],
+      ["女(おんな)の子(こ)", "onna no ko", "anak perempuan"],
+      ["子供(こども)", "kodomo", "anak"],
+      ["赤(あか)ちゃん", "akachan", "bayi"],
+      ["大人(おとな)", "otona", "orang dewasa"],
+      ["両親(りょうしん)", "ryoushin", "orang tua"],
+      ["兄弟(きょうだい)", "kyoudai", "saudara kandung"],
+      ["夫(おっと)", "otto", "suami (sendiri)"],
+      ["妻(つま)", "tsuma", "istri (sendiri)"],
+      ["奥(おく)さん", "okusan", "istri (orang lain)"],
+      ["おじいさん", "ojiisan", "kakek / pria tua"],
+      ["おばあさん", "obaasan", "nenek / wanita tua"],
+      ["おじさん", "ojisan", "paman / pria paruh baya"],
+      ["おばさん", "obasan", "bibi / wanita paruh baya"],
+      ["皆(みな)さん", "minasan", "semuanya"],
+      ["人(ひと)", "hito", "orang"],
+      ["社長(しゃちょう)", "shachou", "direktur"],
+      ["彼(かれ)", "kare", "dia (laki-laki)"],
+      ["彼女(かのじょ)", "kanojo", "dia (perempuan) / pacar"],
+      ["自分(じぶん)", "jibun", "diri sendiri"]
+    ]},
+    { g:"Kata Sifat Tambahan", items:[
+      ["狭(せま)い", "semai", "sempit (Adj-い)"],
+      ["広(ひろ)い", "hiroi", "luas (Adj-い)"],
+      ["太(ふと)い", "futoi", "gemuk / tebal (Adj-い)"],
+      ["細(ほそ)い", "hosoi", "kurus / ramping (Adj-い)"],
+      ["甘(あま)い", "amai", "manis (Adj-い)"],
+      ["辛(から)い", "karai", "pedas (Adj-い)"],
+      ["汚(きたな)い", "kitanai", "kotor (Adj-い)"],
+      ["若(わか)い", "wakai", "muda (Adj-い)"],
+      ["厚(あつ)い", "atsui", "tebal (Adj-い)"],
+      ["薄(うす)い", "usui", "tipis (Adj-い)"],
+      ["眠(ねむ)い", "nemui", "mengantuk (Adj-い)"],
+      ["痛(いた)い", "itai", "sakit (Adj-い)"],
+      ["欲(ほ)しい", "hoshii", "ingin (benda) (Adj-い)"],
+      ["怖(こわ)い", "kowai", "menakutkan (Adj-い)"],
+      ["危(あぶ)ない", "abunai", "berbahaya (Adj-い)"],
+      ["黄色(きいろ)い", "kiiroi", "kuning (Adj-い)"],
+      ["茶色(ちゃいろ)い", "chairoi", "cokelat (Adj-い)"],
+      ["同(おな)じ", "onaji", "sama"],
+      ["色々(いろいろ)（な）", "iroiro (na)", "bermacam-macam (Adj-な)"],
+      ["素敵(すてき)（な）", "suteki (na)", "indah / keren (Adj-な)"],
+      ["駄目(だめ)（な）", "dame (na)", "tidak boleh / tidak baik (Adj-な)"]
+    ]},
+    { g:"Tempat & Lokasi Tambahan", items:[
+      ["寺(てら)", "tera", "kuil Buddha"],
+      ["神社(じんじゃ)", "jinja", "kuil Shinto"],
+      ["村(むら)", "mura", "desa"],
+      ["橋(はし)", "hashi", "jembatan"],
+      ["交差点(こうさてん)", "kousaten", "perempatan"],
+      ["信号(しんごう)", "shingou", "lampu lalu lintas"],
+      ["角(かど)", "kado", "sudut jalan"],
+      ["入口(いりぐち)", "iriguchi", "pintu masuk"],
+      ["出口(でぐち)", "deguchi", "pintu keluar"],
+      ["受付(うけつけ)", "uketsuke", "resepsionis / loket"],
+      ["肉屋(にくや)", "nikuya", "toko daging"],
+      ["花屋(はなや)", "hanaya", "toko bunga"],
+      ["本屋(ほんや)", "hon'ya", "toko buku"],
+      ["八百屋(やおや)", "yaoya", "toko sayur"],
+      ["食堂(しょくどう)", "shokudou", "kantin / rumah makan"],
+      ["地図(ちず)", "chizu", "peta"],
+      ["世界(せかい)", "sekai", "dunia"],
+      ["日本(にほん)", "nihon", "Jepang"],
+      ["中国(ちゅうごく)", "chuugoku", "Tiongkok"],
+      ["韓国(かんこく)", "kankoku", "Korea Selatan"],
+      ["アメリカ", "amerika", "Amerika"],
+      ["外国人(がいこくじん)", "gaikokujin", "orang asing"]
+    ]},
+    { g:"Uang & Belanja", items:[
+      ["円(えん)", "en", "yen"],
+      ["値段(ねだん)", "nedan", "harga"],
+      ["買(か)い物(もの)", "kaimono", "belanja"],
+      ["お土産(みやげ)", "omiyage", "oleh-oleh"],
+      ["荷物(にもつ)", "nimotsu", "barang bawaan"],
+      ["袋(ふくろ)", "fukuro", "kantong / tas plastik"],
+      ["お釣(つ)り", "otsuri", "uang kembalian"],
+      ["お菓子(かし)", "okashi", "kue / camilan"],
+      ["米(こめ)", "kome", "beras"],
+      ["紅茶(こうちゃ)", "koucha", "teh hitam"],
+      ["味(あじ)", "aji", "rasa"]
+    ]},
+    { g:"Waktu Lanjutan", items:[
+      ["時間(じかん)", "jikan", "waktu / jam"],
+      ["半(はん)", "han", "setengah (jam)"],
+      ["毎週(まいしゅう)", "maishuu", "setiap minggu"],
+      ["毎月(まいつき)", "maitsuki", "setiap bulan"],
+      ["毎年(まいとし)", "maitoshi", "setiap tahun"],
+      ["毎晩(まいばん)", "maiban", "setiap malam"],
+      ["今朝(けさ)", "kesa", "pagi ini"],
+      ["今晩(こんばん)", "konban", "malam ini"],
+      ["昨夜(ゆうべ)", "yuube", "semalam"],
+      ["一昨日(おととい)", "ototoi", "kemarin lusa"],
+      ["明後日(あさって)", "asatte", "lusa"],
+      ["夕方(ゆうがた)", "yuugata", "sore"],
+      ["晩(ばん)", "ban", "malam"],
+      ["日(ひ)", "hi", "hari"],
+      ["時(とき)", "toki", "waktu / saat"],
+      ["初(はじ)めて", "hajimete", "pertama kali"],
+      ["夏休(なつやす)み", "natsuyasumi", "liburan musim panas"]
+    ]},
+    { g:"Kata Benda Umum", items:[
+      ["意味(いみ)", "imi", "arti / makna"],
+      ["言葉(ことば)", "kotoba", "kata / bahasa"],
+      ["字(じ)", "ji", "huruf / tulisan"],
+      ["漢字(かんじ)", "kanji", "kanji"],
+      ["話(はなし)", "hanashi", "cerita / pembicaraan"],
+      ["番号(ばんごう)", "bangou", "nomor"],
+      ["電話番号(でんわばんごう)", "denwa bangou", "nomor telepon"],
+      ["住所(じゅうしょ)", "juusho", "alamat"],
+      ["事(こと)", "koto", "hal / perkara"],
+      ["物(もの)", "mono", "benda / barang"],
+      ["所(ところ)", "tokoro", "tempat"],
+      ["紙(かみ)", "kami", "kertas"],
+      ["席(せき)", "seki", "tempat duduk"],
+      ["音(おと)", "oto", "bunyi"],
+      ["お風呂(ふろ)", "ofuro", "mandi / bak mandi"],
+      ["シャワー", "shawaa", "shower"],
+      ["道具? ", "", ""]
+    ]},
+    { g:"Kata Penunjuk & Respons", items:[
+      ["これ", "kore", "ini"],
+      ["それ", "sore", "itu"],
+      ["あれ", "are", "itu (jauh)"],
+      ["ここ", "koko", "di sini"],
+      ["そこ", "soko", "di situ"],
+      ["あそこ", "asoko", "di sana"],
+      ["はい", "hai", "ya"],
+      ["いいえ", "iie", "tidak"],
+      ["どうぞ", "douzo", "silakan"],
+      ["ありがとう", "arigatou", "terima kasih"],
+      ["すみません", "sumimasen", "permisi / maaf"],
+      ["ください", "kudasai", "tolong beri"]
+    ]},
+    { g:"Kata Kerja Lanjutan", items:[
+      ["見(み)つける", "mitsukeru", "menemukan"],
+      ["探(さが)す", "sagasu", "mencari"],
+      ["選(えら)ぶ", "erabu", "memilih"],
+      ["決(き)める", "kimeru", "memutuskan"],
+      ["変(か)わる", "kawaru", "berubah"],
+      ["集(あつ)める", "atsumeru", "mengumpulkan"],
+      ["並(なら)ぶ", "narabu", "berbaris"],
+      ["運(はこ)ぶ", "hakobu", "mengangkut"],
+      ["払(はら)う", "harau", "membayar"],
+      ["注文(ちゅうもん)する", "chuumon suru", "memesan"],
+      ["予約(よやく)する", "yoyaku suru", "memesan tempat"],
+      ["案内(あんない)する", "annai suru", "memandu"],
+      ["説明(せつめい)する", "setsumei suru", "menjelaskan"],
+      ["急(いそ)ぐ", "isogu", "bergegas"],
+      ["出(だ)す", "dasu", "mengeluarkan / mengirim"],
+      ["入(い)れる", "ireru", "memasukkan"],
+      ["持(も)って行(い)く", "motte iku", "membawa pergi"],
+      ["持(も)って来(く)る", "motte kuru", "membawa ke sini"],
+      ["連(つ)れて行(い)く", "tsurete iku", "mengajak pergi"],
+      ["乗(の)り換(か)える", "norikaeru", "berpindah kendaraan"],
+      ["通(かよ)う", "kayou", "pulang-pergi (sekolah / kantor)"],
+      ["泊(と)まる", "tomaru", "menginap"],
+      ["出掛(でか)ける", "dekakeru", "bepergian / pergi keluar"],
+      ["戻(もど)る", "modoru", "kembali"],
+      ["磨(みが)く", "migaku", "menggosok / menyikat"],
+      ["消(き)える", "kieru", "menghilang / padam"],
+      ["開(あ)く", "aku", "terbuka"],
+      ["閉(し)まる", "shimaru", "tertutup"],
+      ["壊(こわ)れる", "kowareru", "rusak"],
+      ["無(な)くなる", "nakunaru", "hilang / habis"],
+      ["見(み)つかる", "mitsukaru", "ditemukan"],
+      ["動(うご)く", "ugoku", "bergerak"],
+      ["飛(と)ぶ", "tobu", "terbang"],
+      ["登(のぼ)る", "noboru", "mendaki"],
+      ["咲(さ)く", "saku", "mekar"],
+      ["焼(や)く", "yaku", "memanggang / membakar"],
+      ["沸(わ)かす", "wakasu", "mendidihkan"]
+    ]},
+    { g:"Perasaan & Kondisi", items:[
+      ["気持(きも)ち", "kimochi", "perasaan"],
+      ["心(こころ)", "kokoro", "hati / jiwa"],
+      ["お腹(なか)がすく", "onaka ga suku", "lapar"],
+      ["喉(のど)が渇(かわ)く", "nodo ga kawaku", "haus"],
+      ["楽(たの)しみ", "tanoshimi", "hal yang dinantikan"],
+      ["心配(しんぱい)", "shinpai", "kekhawatiran"],
+      ["残念(ざんねん)（な）", "zannen (na)", "sayang sekali (Adj-な)"],
+      ["本当(ほんとう)", "hontou", "benar / sungguh"],
+      ["大好(だいす)き（な）", "daisuki (na)", "sangat suka (Adj-な)"],
+      ["大嫌(だいきら)い（な）", "daikirai (na)", "sangat tidak suka (Adj-な)"],
+      ["嘘(うそ)", "uso", "bohong"],
+      ["お願(ねが)い", "onegai", "permohonan"],
+      ["お礼(れい)", "orei", "ucapan terima kasih"],
+      ["返事(へんじ)", "henji", "balasan / jawaban"],
+      ["挨拶(あいさつ)", "aisatsu", "salam"],
+      ["紹介(しょうかい)", "shoukai", "perkenalan"]
+    ]},
+    { g:"Hewan & Alam Lanjutan", items:[
+      ["馬(うま)", "uma", "kuda"],
+      ["牛(うし)", "ushi", "sapi"],
+      ["豚(ぶた)", "buta", "babi"],
+      ["虫(むし)", "mushi", "serangga"],
+      ["動物(どうぶつ)", "doubutsu", "hewan"],
+      ["草(くさ)", "kusa", "rumput"],
+      ["森(もり)", "mori", "hutan"],
+      ["池(いけ)", "ike", "kolam"],
+      ["島(しま)", "shima", "pulau"],
+      ["石(いし)", "ishi", "batu"],
+      ["火(ひ)", "hi", "api"],
+      ["雲(くも)", "kumo", "awan"],
+      ["月(つき)", "tsuki", "bulan"],
+      ["星(ほし)", "hoshi", "bintang"],
+      ["地震(じしん)", "jishin", "gempa bumi"]
+    ]},
+    { g:"Makanan Tambahan", items:[
+      ["うどん", "udon", "mi udon"],
+      ["そば", "soba", "mi soba"],
+      ["スープ", "suupu", "sup"],
+      ["味噌汁(みそしる)", "misoshiru", "sup miso"],
+      ["天(てん)ぷら", "tenpura", "tempura"],
+      ["刺身(さしみ)", "sashimi", "sashimi"],
+      ["おにぎり", "onigiri", "onigiri"],
+      ["サンドイッチ", "sandoicchi", "sandwich"],
+      ["トマト", "tomato", "tomat"],
+      ["玉葱(たまねぎ)", "tamanegi", "bawang bombai"],
+      ["人参(にんじん)", "ninjin", "wortel"],
+      ["じゃがいも", "jagaimo", "kentang"],
+      ["レモン", "remon", "lemon"],
+      ["バター", "bataa", "mentega"],
+      ["チーズ", "chiizu", "keju"],
+      ["油(あぶら)", "abura", "minyak"]
+    ]},
+    { g:"Sekolah & Pelajaran", items:[
+      ["小学校(しょうがっこう)", "shougakkou", "sekolah dasar"],
+      ["中学校(ちゅうがっこう)", "chuugakkou", "SMP"],
+      ["高校(こうこう)", "koukou", "SMA"],
+      ["大学生(だいがくせい)", "daigakusei", "mahasiswa"],
+      ["高校生(こうこうせい)", "koukousei", "siswa SMA"],
+      ["一年生(いちねんせい)", "ichinensei", "siswa kelas satu"],
+      ["教科書(きょうかしょ)", "kyoukasho", "buku pelajaran"],
+      ["黒板(こくばん)", "kokuban", "papan tulis"],
+      ["消(け)しゴム", "keshigomu", "penghapus"],
+      ["作文(さくぶん)", "sakubun", "karangan"],
+      ["会話(かいわ)", "kaiwa", "percakapan"],
+      ["発音(はつおん)", "hatsuon", "pelafalan"],
+      ["銀行員(ぎんこういん)", "ginkouin", "pegawai bank"],
+      ["レポート", "repooto", "laporan"],
+      ["テスト", "tesuto", "tes / ujian"],
+      ["クラス", "kurasu", "kelas"],
+      ["ページ", "peeji", "halaman"]
+    ]},
+    { g:"Kata Sifat Lanjutan 2", items:[
+      ["正(ただ)しい", "tadashii", "benar (Adj-い)"],
+      ["いい", "ii", "baik / bagus (Adj-い)"],
+      ["素晴(すば)らしい", "subarashii", "luar biasa (Adj-い)"],
+      ["珍(めずら)しい", "mezurashii", "langka / aneh (Adj-い)"],
+      ["暖(あたた)かい", "atatakai", "hangat (Adj-い)"],
+      ["涼(すず)しい", "suzushii", "sejuk (Adj-い)"],
+      ["うるさい", "urusai", "berisik (Adj-い)"],
+      ["丈夫(じょうぶ)（な）", "joubu (na)", "kuat / awet (Adj-な)"],
+      ["立派(りっぱ)（な）", "rippa (na)", "mengagumkan / megah (Adj-な)"],
+      ["真面目(まじめ)（な）", "majime (na)", "serius / rajin (Adj-な)"],
+      ["無理(むり)（な）", "muri (na)", "mustahil / memaksakan (Adj-な)"],
+      ["必要(ひつよう)（な）", "hitsuyou (na)", "perlu (Adj-な)"],
+      ["自由(じゆう)（な）", "jiyuu (na)", "bebas (Adj-な)"],
+      ["変(へん)（な）", "hen (na)", "aneh (Adj-な)"]
+    ]},
+    { g:"Kata Keterangan & Penghubung 2", items:[
+      ["ずっと", "zutto", "terus-menerus / jauh lebih"],
+      ["もっと", "motto", "lebih (banyak)"],
+      ["ゆっくり", "yukkuri", "pelan-pelan"],
+      ["はっきり", "hakkiri", "dengan jelas"],
+      ["きっと", "kitto", "pasti"],
+      ["多分(たぶん)", "tabun", "mungkin"],
+      ["本当(ほんとう)に", "hontou ni", "benar-benar"],
+      ["特(とく)に", "toku ni", "terutama"],
+      ["だんだん", "dandan", "lama-kelamaan"],
+      ["まず", "mazu", "pertama-tama"],
+      ["次(つぎ)に", "tsugi ni", "berikutnya"],
+      ["最後(さいご)に", "saigo ni", "terakhir"],
+      ["後(あと)で", "ato de", "nanti"],
+      ["先(さき)に", "saki ni", "lebih dulu"],
+      ["急(きゅう)に", "kyuu ni", "tiba-tiba"],
+      ["例(たと)えば", "tatoeba", "misalnya"],
+      ["必(かなら)ず", "kanarazu", "pasti / tanpa gagal"],
+      ["一人(ひとり)で", "hitori de", "sendirian"],
+      ["色々(いろいろ)", "iroiro", "bermacam-macam"],
+      ["大体(だいたい)", "daitai", "kira-kira / umumnya"],
+      ["みんな", "minna", "semuanya"],
+      ["じゃあ", "jaa", "kalau begitu"],
+      ["それに", "soreni", "lagi pula"],
+      ["しかし", "shikashi", "namun"]
+    ]},
+    { g:"Posisi & Lingkungan", items:[
+      ["近所(きんじょ)", "kinjo", "tetangga / sekitar rumah"],
+      ["通(とお)り", "toori", "jalan / ruas jalan"],
+      ["向(む)こう", "mukou", "seberang / sana"],
+      ["側(そば)", "soba", "dekat / di samping"],
+      ["間(あいだ)", "aida", "antara"],
+      ["真(ま)ん中(なか)", "mannaka", "tengah-tengah"],
+      ["先(さき)", "saki", "ujung / depan / sebelumnya"],
+      ["二階(にかい)", "nikai", "lantai dua"],
+      ["地下(ちか)", "chika", "bawah tanah"]
+    ]},
+    { g:"Satuan & Ukuran", items:[
+      ["番(ばん)", "ban", "nomor urut"],
+      ["回(かい)", "kai", "kali (frekuensi)"],
+      ["年(ねん)", "nen", "tahun (hitungan)"],
+      ["分(ふん)", "fun", "menit"],
+      ["メートル", "meetoru", "meter"],
+      ["キロ", "kiro", "kilo"],
+      ["グラム", "guramu", "gram"],
+      ["センチ", "senchi", "sentimeter"]
+    ]},
+    { g:"Serapan & Media", items:[
+      ["ビル", "biru", "gedung"],
+      ["アパート", "apaato", "apartemen kecil"],
+      ["マンション", "manshon", "apartemen"],
+      ["ボタン", "botan", "tombol / kancing"],
+      ["スイッチ", "suicchi", "saklar"],
+      ["ストーブ", "sutoobu", "penghangat ruangan"],
+      ["ガス", "gasu", "gas"],
+      ["ニュース", "nyuusu", "berita"],
+      ["ドラマ", "dorama", "drama"],
+      ["アニメ", "anime", "anime"],
+      ["マンガ", "manga", "komik"],
+      ["コンサート", "konsaato", "konser"],
+      ["デート", "deeto", "kencan"],
+      ["ダンス", "dansu", "dansa / tari"]
+    ]},
+    { g:"Kata Kerja Pelengkap", items:[
+      ["着(き)る", "kiru", "memakai (baju)"],
+      ["言(い)う", "iu", "mengatakan"],
+      ["撮(と)る", "toru", "memotret / merekam"],
+      ["弾(ひ)く", "hiku", "memainkan (alat musik)"],
+      ["吸(す)う", "suu", "menghisap / merokok"],
+      ["違(ちが)う", "chigau", "berbeda / salah"],
+      ["掛(か)かる", "kakaru", "memakan (waktu / biaya)"],
+      ["付(つ)ける", "tsukeru", "memasang / menyalakan"],
+      ["起(お)こす", "okosu", "membangunkan"],
+      ["貸(か)して下(くだ)さい", "kashite kudasai", "tolong pinjamkan"],
+      ["乗(の)り物(もの)", "norimono", "kendaraan"]
+    ]},
+    { g:"Bangunan & Tempat Umum 2", items:[
+      ["交番(こうばん)", "kouban", "pos polisi"],
+      ["工場(こうじょう)", "koujou", "pabrik"],
+      ["動物園(どうぶつえん)", "doubutsuen", "kebun binatang"],
+      ["美術館(びじゅつかん)", "bijutsukan", "museum seni"],
+      ["お手洗(てあら)い", "otearai", "toilet"],
+      ["体育館(たいいくかん)", "taiikukan", "gedung olahraga"],
+      ["水族館(すいぞくかん)", "suizokukan", "akuarium"],
+      ["博物館(はくぶつかん)", "hakubutsukan", "museum"],
+      ["遊園地(ゆうえんち)", "yuuenchi", "taman hiburan"],
+      ["大使館(たいしかん)", "taishikan", "kedutaan"]
+    ]},
+    { g:"Perlengkapan & Alat Tulis", items:[
+      ["切手(きって)", "kitte", "perangko"],
+      ["封筒(ふうとう)", "fuutou", "amplop"],
+      ["葉書(はがき)", "hagaki", "kartu pos"],
+      ["鍵(かぎ)", "kagi", "kunci"],
+      ["石鹸(せっけん)", "sekken", "sabun"],
+      ["タオル", "taoru", "handuk"],
+      ["ハンカチ", "hankachi", "sapu tangan"],
+      ["電池(でんち)", "denchi", "baterai"],
+      ["雑誌(ざっし)", "zasshi", "majalah"],
+      ["歯(は)ブラシ", "haburashi", "sikat gigi"],
+      ["コーヒーカップ", "koohii kappu", "cangkir kopi"],
+      ["カップ", "kappu", "cangkir"]
+    ]},
+    { g:"Kata Tanya & Penunjuk Lanjutan", items:[
+      ["どちら", "dochira", "yang mana / arah mana"],
+      ["どの", "dono", "yang mana (+ benda)"],
+      ["どなた", "donata", "siapa (sopan)"],
+      ["なぜ", "naze", "mengapa"],
+      ["何(なに)か", "nanika", "sesuatu"],
+      ["誰(だれ)か", "dareka", "seseorang"],
+      ["どこか", "dokoka", "suatu tempat"],
+      ["この", "kono", "ini (+ benda)"],
+      ["その", "sono", "itu (+ benda)"],
+      ["あの", "ano", "itu jauh (+ benda)"],
+      ["こちら", "kochira", "sebelah sini / orang ini (sopan)"],
+      ["そちら", "sochira", "sebelah situ"],
+      ["あちら", "achira", "sebelah sana"],
+      ["こんな", "konna", "seperti ini"],
+      ["そんな", "sonna", "seperti itu"],
+      ["あんな", "anna", "seperti itu (jauh)"],
+      ["そう", "sou", "begitu"],
+      ["こう", "kou", "begini"]
+    ]},
+    { g:"Partikel Bantu & Ungkapan Waktu", items:[
+      ["ごろ", "goro", "sekitar (waktu)"],
+      ["ぐらい", "gurai", "sekitar (jumlah)"],
+      ["だけ", "dake", "hanya"],
+      ["など", "nado", "dan lain-lain"],
+      ["今度(こんど)", "kondo", "kali ini / lain kali"],
+      ["再来週(さらいしゅう)", "saraishuu", "minggu setelah minggu depan"],
+      ["一昨年(おととし)", "ototoshi", "dua tahun lalu"],
+      ["昼休(ひるやす)み", "hiruyasumi", "istirahat siang"],
+      ["お正月(しょうがつ)", "oshougatsu", "tahun baru"],
+      ["祭(まつ)り", "matsuri", "festival"],
+      ["夕食(ゆうしょく)", "yuushoku", "makan malam"],
+      ["朝食(ちょうしょく)", "choushoku", "sarapan"]
+    ]},
+    { g:"Rasa & Lainnya", items:[
+      ["まずい", "mazui", "tidak enak (Adj-い)"],
+      ["苦(にが)い", "nigai", "pahit (Adj-い)"],
+      ["酸(す)っぱい", "suppai", "asam (Adj-い)"],
+      ["ゼロ", "zero", "nol"],
+      ["零(れい)", "rei", "nol"],
+      ["百(ひゃく)", "hyaku", "seratus"],
+      ["千(せん)", "sen", "seribu"],
+      ["万(まん)", "man", "sepuluh ribu"],
+      ["人形(にんぎょう)", "ningyou", "boneka"],
+      ["花見(はなみ)", "hanami", "melihat bunga sakura"]
     ]}
   ]
 };
@@ -559,7 +1456,7 @@ let S={dy:{goal:20,log:{}},srs:{},hd:{},nt:{},bp:{},kj:{},kn:{},qz:{bp:{n:0,ok:0
 try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r))}catch(e){}
 let svw=0;const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){if(!svw){svw=1;toast('Progres tidak bisa disimpan di browser ini. Buat kode cadangan dari menu ☰.')}}};
 const isO=x=>x&&typeof x==='object'&&!Array.isArray(x);
-function fixS(){['bp','kj','kn','srs','hd','nt'].forEach(k=>{if(!isO(S[k]))S[k]={}});if(!isO(S.qz))S.qz={};['bp','kj','kn','te'].forEach(k=>{const q=S.qz[k];if(!isO(q)||typeof q.n!=='number'||typeof q.ok!=='number')S.qz[k]={n:0,ok:0}});if(!isO(S.wr))S.wr={};['bp','kj'].forEach(k=>{if(!Array.isArray(S.wr[k]))S.wr[k]=[]});if(!isO(S.dy))S.dy={};if(typeof S.dy.goal!=='number')S.dy.goal=20;if(!isO(S.dy.log))S.dy.log={};if(S.ex&&typeof S.ex.best!=='number')S.ex=null;if(!isO(S.set))S.set={}}
+function fixS(){['bp','kj','kn','srs','hd','nt'].forEach(k=>{if(!isO(S[k]))S[k]={}});if(!isO(S.qz))S.qz={};['bp','kj','kn','te','tg'].forEach(k=>{const q=S.qz[k];if(!isO(q)||typeof q.n!=='number'||typeof q.ok!=='number')S.qz[k]={n:0,ok:0}});if(!isO(S.wr))S.wr={};['bp','kj','tg'].forEach(k=>{if(!Array.isArray(S.wr[k]))S.wr[k]=[]});if(!isO(S.dy))S.dy={};if(typeof S.dy.goal!=='number')S.dy.goal=20;if(!isO(S.dy.log))S.dy.log={};if(S.ex&&typeof S.ex.best!=='number')S.ex=null;if(!isO(S.set))S.set={}}
 fixS();
 const DEF={th:'auto',furi:1,fs:'m',rate:.85,sk:1};
 S.set=Object.assign({},DEF,S.set||{});
@@ -596,24 +1493,25 @@ function toast(m){document.querySelectorAll('.toast').forEach(x=>x.remove());con
 function say(t){if(!('speechSynthesis' in window)){toast('Browser ini belum mendukung suara.');return}try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t),vs=speechSynthesis.getVoices(),v=vs.find(x=>/^ja/i.test(x.lang));u.lang='ja-JP';u.rate=S.set.rate;if(v)u.voice=v;else if(vs.length)toast('Suara bahasa Jepang belum terpasang di HP ini. Aktifkan di pengaturan Text-to-speech.');speechSynthesis.speak(u)}catch(e){toast('Suara tidak bisa diputar.')}}
 
 /* ================= MODUL DASAR PEMULA ================= */
-let DM = 'te'; // 'te', 'kelas', 'kalimat', 'bilangan', 'partikel', 'kosoado', 'salam', 'tango'
+let DM = ''; // 'te', 'kelas', 'kalimat', 'bilangan', 'partikel', 'kosoado', 'salam', 'tango'
 let SIM = { idx: 0, mode: 'choice', ans: null, input: '' };
 let CSIM = { idx: 0, ans: null };
 let SBSIM = { idx: 0, picked: [], checked: null };
 
+const DORD=[['salam','挨','Salam & Ungkapan','Sapaan sehari-hari, paling mudah untuk mulai'],['kosoado','数','Ko-So-A-Do & Angka','Kata tunjuk, bilangan, dan waktu dasar'],['tango','語','Kosakata Dasar','Kata-kata inti yang sering dipakai'],['kelas','類','Kelas Kata','Benda, kerja, sifat-i, sifat-na'],['partikel','助','Partikel','は・が・を・に・で dan kawan-kawan'],['kalimat','文','Pola & Susun Kalimat','Menyusun kalimat dari potongan kata'],['bilangan','個','Kata Bantu Bilangan','Menghitung orang, benda, dan lainnya'],['te','動','Bentuk-て & ます','Perubahan kata kerja, bagian tersulit']];
 function vDasar(){
-  app.innerHTML=`
-    <div class="seg tabs" style="margin-bottom:12px">
-      <button data-dm="te" class="${DM==='te'?'on':''}">Bentuk-て &amp; ます</button>
-      <button data-dm="kelas" class="${DM==='kelas'?'on':''}">Kelas Kata</button>
-      <button data-dm="kalimat" class="${DM==='kalimat'?'on':''}">Pola &amp; Susun Kalimat</button>
-      <button data-dm="bilangan" class="${DM==='bilangan'?'on':''}">Kata Bantu Bilangan</button>
-      <button data-dm="partikel" class="${DM==='partikel'?'on':''}">Partikel</button>
-      <button data-dm="kosoado" class="${DM==='kosoado'?'on':''}">Ko-So-A-Do &amp; Angka</button>
-      <button data-dm="salam" class="${DM==='salam'?'on':''}">Salam</button>
-      <button data-dm="tango" class="${DM==='tango'?'on':''}">Kosakata</button>
-    </div>
-    <div id="dbody"></div>`;
+  const ds=S.ds||(S.ds={});
+  if(!DM){
+    const n=DORD.filter(x=>ds[x[0]]).length;
+    app.innerHTML=`<h2>Materi Dasar</h2><p class="mu">Pelajari berurutan dari 1 sampai 8 supaya tidak bingung. Ketuk topik untuk membuka.</p>
+    <a href="#huruf" class="dz" style="text-decoration:none;color:inherit"><span class="dn0">0</span><div class="dt"><b>Hafalkan Hiragana &amp; Katakana dulu</b><small>Buka Materi → Huruf. Langkah awal sebelum topik di bawah.</small></div><span class="mu">›</span></a>
+    <div class="bar" style="margin:12px 0 4px"><i style="width:${n/DORD.length*100}%"></i></div><p class="mu" style="margin:0 0 6px;font-size:13px">${n} dari ${DORD.length} topik sudah dibuka</p>
+    ${DORD.map((x,i)=>`<button class="dz ${ds[x[0]]?'dd':''}" data-dm="${x[0]}"><span class="dn">${ds[x[0]]?'✓':i+1}</span><div class="dt"><b>${esc(x[2])}</b><small>${esc(x[3])}</small></div><span class="di">${x[1]}</span></button>`).join('')}`;
+    return;
+  }
+  const i=DORD.findIndex(x=>x[0]===DM),nx=DORD[i+1];ds[DM]=1;save();
+  app.innerHTML=`<div class="dbar"><button data-dm="" class="btn alt">‹ Semua topik</button><span class="mini-pill pk">Langkah ${i+1} dari ${DORD.length}</span></div><div id="dbody"></div>
+  <div class="dfoot">${nx?`<button class="btn" data-dm="${nx[0]}" style="width:100%">Berikutnya: ${esc(nx[2])} ›</button>`:`<button class="btn g" data-dm="" style="width:100%">Selesai · kembali ke daftar topik</button>`}</div>`;
   drawDasar();
 }
 
@@ -1055,13 +1953,13 @@ function vKartu(){
     opts += '<optgroup label="Per kelompok">'+src.map(g=>`<option value="kg:${esc(g.g)}">${esc(g.g)}</option>`).join('')+'</optgroup>';
   }
   app.innerHTML=`
-    <div class="seg" style="margin-bottom:10px">
-      <button data-sm="hira" class="${m==='hira'?'on':''}">Hiragana</button>
-      <button data-sm="kata" class="${m==='kata'?'on':''}">Katakana</button>
+    <div class="seg ktab" style="margin-bottom:10px">
+      <button data-sm="${m==='hira'||m==='kata'?m:'hira'}" class="${m==='hira'||m==='kata'?'on':''}">Huruf</button>
       <button data-sm="tg" class="${m==='tg'?'on':''}">Kosakata</button>
       <button data-sm="kj" class="${m==='kj'?'on':''}">Kanji</button>
       <button data-sm="bp" class="${m==='bp'?'on':''}">Bunpou</button>
     </div>
+    ${m==='hira'||m==='kata'?`<div class="seg" style="margin-bottom:10px"><button data-sm="hira" class="${m==='hira'?'on':''}">Hiragana</button><button data-sm="kata" class="${m==='kata'?'on':''}">Katakana</button></div>`:''}
     <select id="fs">${opts}</select><p class="mu" id="si"></p><div id="fb"></div>`;
   $('#fs').value=SR.scope;if(!$('#fs').value){SR.scope='all';$('#fs').value='all'}
   $('#fs').onchange=e=>{SR.scope=e.target.value;srStart()};srStart()
@@ -1076,7 +1974,7 @@ function sdraw(){
   else if(m==='tg') face=fr?`<div class="big" style="font-size:42px">${rb(x.w)}</div><p class="mu">${esc(x.r)}</p><h2>${esc(x.m)}</h2>${sayBtn(x.w)}`:`<div class="big" style="font-size:44px">${rb(x.w)}</div>${sayBtn(x.w)}<p class="mu">Ketuk kartu untuk melihat arti</p>`;
   else face=fr?`<div class="big" style="font-size:54px">${x.c}</div><h2>${esc(x.r)}</h2><p class="mu">Contoh: ${esc(x.ex)}</p>${sayBtn(x.ex.split(' ')[0])}`:`<div class="big">${x.c}</div>${sayBtn(x.c)}<p class="mu">Ketuk kartu untuk melihat bacaan</p>`;
   const iv=g=>{const n=srNext(S.srs[key],g).iv;return n?n+' hari':'segera'};
-  b.innerHTML=`<p class="mu">Sisa antrean: ${SR.q.length-SR.i}</p><div class="fc" id="fc">${face}</div>`+(x?`<div class="flex"><button class="btn" data-sr="0">Lupa<small>${iv(0)}</small></button><button class="btn o" data-sr="1">Ragu<small>${iv(1)}</small></button><button class="btn g" data-sr="2">Ingat<small>${iv(2)}</small></button></div><div class="flex" style="margin-top:8px">${hardBtn(key)}</div>`:'')
+  b.innerHTML=`<p class="mu">Sisa antrean: ${SR.q.length-SR.i}</p><div class="fc" id="fc">${face}</div>`+(x?`<div class="flex srb"><button class="btn" data-sr="0">Lupa</button><button class="btn o" data-sr="1">Ragu</button><button class="btn g" data-sr="2">Ingat</button></div><div class="flex srb" style="margin-top:10px">${hardBtn(key)}</div><p class="mu" style="text-align:center;font-size:14px;margin-top:14px">Lupa = diulang sebentar lagi · Ragu = diulang beberapa hari lagi · Ingat = diulang lebih lama</p>`:'')
 }
 
 document.addEventListener('input',e=>{const el=e.target,k=el.dataset&&el.dataset.nt;if(k){el.value.trim()?S.nt[k]=el.value:delete S.nt[k];save()}});
@@ -1139,17 +2037,8 @@ $('#st').textContent='Kemiripan '+pct+'%: '+(pct>=75?'bagus sekali':pct>=55?'cuk
 /* ================= LATIHAN & KUIS CAMPURAN ================= */
 const Z={set:null,qs:[],i:0,ok:0,done:false,pick:false};
 const ZC={t:'kn',n:10,s:'all'};
-const ZT=[
-  ['kn','Hiragana & Katakana'],
-  ['te','Perubahan Bentuk-て'],
-  ['kl','Kelas Kata (Benda/Kerja/Sifat)'],
-  ['bun','Partikel & Bunpou'],
-  ['tg','Kosakata N5'],
-  ['ka','Kanji → Arti'],
-  ['bc','Kanji: Pilih Bacaan'],
-  ['kk','Arti → Kanji'],
-  ['dg','Dengar Kalimat → Arti']
-];
+const ZT=[['kn','Hiragana & Katakana'],['te','Bentuk-て'],['kl','Kelas kata'],['bun','Pilih bentuk'],['dg','Dengar → arti'],['bc','Pilih bacaan'],['ka','Kanji → arti'],['kk','Arti → kanji'],['tg','Kata → arti'],['tb','Arti → kata'],['td','Dengar → arti'],['tt','Ketik bacaan']],
+ZG=[['Huruf & Dasar',['kn','te','kl']],['Bunpou',['bun','dg']],['Kanji',['bc','ka','kk']],['Kosakata',['tg','tb','td','tt']]],VT=['tg','tb','td','tt'];
 const shuf=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
 const mk=(c,pool,extra)=>{let d=shuf([...new Set(pool.filter(x=>x!==c))]).slice(0,3);if(d.length<3)d=d.concat(shuf([...new Set(extra.filter(x=>x!==c&&!d.includes(x)))]).slice(0,3-d.length));const o=shuf([c,...d]);return{o,k:o.indexOf(c)}};
 const fmt=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
@@ -1166,16 +2055,22 @@ const rdQ=(w,P)=>{const c=tts(w[0]),m=mk(c,P.flatMap(k=>k.v.map(v=>tts(v[0]))),K
 const knQ=(x,P)=>{const m=mk(x.r,P.map(y=>y.r),KANA.map(y=>y.r));return{h:`<div class='big'>${x.c}</div><p class='mu' style='text-align:center'>Bagaimana cara membacanya? (${x.tp==='hira'?'Hiragana':'Katakana'})</p>`,o:m.o.map(esc),k:m.k,st:'kn',sec:'Kana',say:x.c}};
 const teQ=(v)=>{const m=mk(v.te,PEMULA.verbs.map(x=>x.te),PEMULA.verbs.map(x=>x.te));return{h:`Bentuk-て dari <b style='font-size:26px'>${rb(v.d)}</b> (${esc(v.m)}) adalah…`,o:m.o.map(rb),k:m.k,st:'te',sec:'Bentuk-て',say:v.te,rev:esc(v.hint)}};
 const klQ=(cd)=>{const opts=["Kata Benda (名詞)","Kata Kerja Golongan 1 (動詞)","Kata Sifat-i (い形容詞)","Kata Sifat-na (な形容詞)"];const o=shuf(opts);return{h:`Termasuk kelas kata apakah <b style='font-size:26px'>${rb(cd.word)}</b> (${esc(cd.meaning)})?`,o:o.map(esc),k:o.indexOf(cd.cls),st:'bp',sec:'Kelas Kata',say:cd.word,rev:esc(cd.tip)}};
-const tgQ=(w)=>{const m=mk(w.m,TANGO.map(x=>x.m),TANGO.map(x=>x.m));return{h:`Apa arti kosakata <b style='font-size:26px'>${rb(w.w)}</b>?`,o:m.o.map(esc),k:m.k,st:'bp',sec:'Kosakata',say:w.w}};
+const tgQ=(w,t)=>{t=t||'tg';const i=TANGO.indexOf(w),same=TANGO.filter(x=>x.g===w.g&&x.m!==w.m),oth=TANGO.filter(x=>x.m!==w.m),b={st:'tg',ix:i},sp=w.w.split('／')[0];
+if(t==='tb'){const r=mk(w.w,same.map(x=>x.w),oth.map(x=>x.w));return{h:`Kata yang berarti <b>${esc(w.m)}</b>`,o:r.o.map(rb),k:r.k,sec:'Kosakata',say:sp,...b}}
+if(t==='tt')return{h:`<span style='font-size:34px'>${esc(pl(w.w).replace(/（[^）]*）/g,''))}</span><p class='mu'>Arti: ${esc(w.m)}. Ketik bacaannya (hiragana atau romaji).</p>`,ans:tts(w.w).replace(/（[^）]*）/g,'').split('／').map(x=>toH(x).replace(/[\s・]/g,'')),sec:'Ketik',...b};
+const r=mk(w.m,same.map(x=>x.m),oth.map(x=>x.m));
+if(t==='td')return{h:`<div style='text-align:center'>${sayBtn(sp)}<p class='mu'>Ketuk speaker, dengarkan, lalu pilih artinya.</p></div>`,o:r.o.map(esc),k:r.k,sec:'Dengar',rev:rb(w.w),...b};
+return{h:`Apa arti kosakata <b style='font-size:26px'>${rb(w.w)}</b>?`,o:r.o.map(esc),k:r.k,sec:'Kosakata',say:sp,...b}};
 
 function vLatihan(){
   Z.exam=0;clearInterval(Z.tm);const t=ZC.t;
   let sc='';
   if(t==='kn') sc=`<option value='all'>Semua Hiragana &amp; Katakana</option><option value='hira'>Hiragana saja</option><option value='kata'>Katakana saja</option>`;
-  else if(t==='te') sc=`<option value='all'>Semua Golongan (1, 2, 3)</option><option value='1'>Golongan 1 saja (う・つ・る・ぶ・ぬ・む・く・ぐ・す)</option><option value='2'>Golongan 2 &amp; 3 saja</option>`;
+  else if(t==='te') sc=`<option value='all'>Semua golongan (1, 2, 3)</option><option value='1'>Golongan 1 saja</option><option value='2'>Golongan 2 &amp; 3 saja</option>`;
   else if(t==='dg') sc=`<option value='all'>Semua bunpou</option>`+D.bp.map((g,i)=>`<option value='${i}'>${esc(g.g)}</option>`).join('');
+  else if(VT.includes(t)) sc=`<option value='all'>Semua kosakata</option><option value='hard'>★ Daftar sulit</option>`+PEMULA.tango.map((g,i)=>`<option value='g:${i}'>Tema: ${esc(g.g)}</option>`).join('');
   else if(t==='ka'||t==='bc'||t==='kk') sc=`<option value='all'>Semua kanji</option><option value='hard'>★ Daftar sulit</option>`+TH().map(t=>`<option value='t:${esc(t.n)}'>Tema: ${esc(t.n)}</option>`).join('');
-  app.innerHTML=`<h2>Latihan &amp; Kuis N5</h2><div class='card'><b>Jenis kuis</b><div class='seg' style='flex-wrap:wrap;margin:8px 0'>${ZT.map(x=>`<button data-zt='${x[0]}' class='${t===x[0]?'on':''}' style='flex:1 1 45%'>${x[1]}</button>`).join('')}</div>${sc?`<b>Cakupan</b><select id='zs' style='margin-top:8px'>${sc}</select>`:''}<b>Jumlah soal</b><div class='seg' style='margin:8px 0'>${[10,20,30].map(n=>`<button data-zn='${n}' class='${ZC.n===n?'on':''}'>${n}</button>`).join('')}</div><button class='btn' data-z='go' style='width:100%'>Mulai kuis</button></div><div class='card'><b>Simulasi ujian N5 campuran</b><p class='mu'>30 soal campuran (Kana, Bentuk-て, Partikel/Bunpou, Kosakata, Kanji), waktu 20 menit, pembahasan muncul setelah selesai. Skor terbaik: ${S.ex?S.ex.best+'%':'belum ada'}.</p><button class='btn o' data-ex='1' style='width:100%'>Mulai simulasi</button></div><div class='card'><b>Ulangi soal yang salah</b><div class='flex' style='margin-top:8px'><button class='btn alt' data-zw='bp'>Bunpou (${S.wr.bp.length})</button><button class='btn alt' data-zw='kj'>Bacaan kanji (${S.wr.kj.length})</button></div></div>`;
+  app.innerHTML=`<h2>Latihan</h2><div class='card'><b>Jenis kuis</b>${ZG.map(g=>`<div style='margin:12px 0 4px;font-weight:700;color:var(--pk)'>${g[0]}</div><div class='seg' style='flex-wrap:wrap'>${g[1].map(k=>`<button data-zt='${k}' class='${t===k?'on':''}' style='flex:1 1 45%'>${ZT.find(z=>z[0]===k)[1]}</button>`).join('')}</div>`).join('')}${sc?`<b style='display:block;margin-top:12px'>Cakupan</b><select id='zs' style='margin-top:8px'>${sc}</select>`:''}<b>Jumlah soal</b><div class='seg' style='margin:8px 0'>${[10,20,30].map(n=>`<button data-zn='${n}' class='${ZC.n===n?'on':''}'>${n}</button>`).join('')}</div><button class='btn' data-z='go' style='width:100%'>Mulai kuis</button></div><div class='card'><b>Simulasi ujian N5</b><p class='mu'>30 soal campuran (Kana, Bentuk-て, Partikel/Bunpou, Kosakata, Kanji), waktu 20 menit, pembahasan muncul setelah selesai. Skor terbaik: ${S.ex?S.ex.best+'%':'belum ada'}.</p><button class='btn o' data-ex='1' style='width:100%'>Mulai simulasi</button></div><div class='card'><b>Ulangi soal yang salah</b><div class='flex' style='margin-top:8px'><button class='btn alt' data-zw='bp'>Bunpou (${S.wr.bp.length})</button><button class='btn alt' data-zw='kj'>Bacaan kanji (${S.wr.kj.length})</button><button class='btn alt' data-zw='tg'>Kosakata (${S.wr.tg.length})</button></div></div>`;
   if(sc){$('#zs').value=ZC.s;if(!$('#zs').value){ZC.s='all';$('#zs').value='all'}}
 }
 function zGo(){
@@ -1184,7 +2079,7 @@ function zGo(){
   else if(t==='te'){const P=s==='1'?PEMULA.verbs.filter(v=>v.g===1):s==='2'?PEMULA.verbs.filter(v=>v.g!==1):PEMULA.verbs;it=shuf(P).slice(0,n).map(teQ)}
   else if(t==='kl')it=shuf(PEMULA.classDrills).slice(0,n).map(klQ);
   else if(t==='bun')it=shuf(D.bq.map((_,i)=>i)).slice(0,n).map(bunQ);
-  else if(t==='tg')it=shuf(TANGO).slice(0,n).map(tgQ);
+  else if(VT.includes(t)){const P=s==='hard'?TANGO.filter(x=>S.hd['w'+x.w]):s.startsWith('g:')?TANGO.filter(x=>x.g===(PEMULA.tango[+s.slice(2)]||{}).g):TANGO;if(!P.length){toast('Daftar sulit masih kosong. Tandai dulu beberapa kata di menu Kosakata.');return}it=shuf(P).slice(0,n).map(w=>tgQ(w,t))}
   else if(t==='dg'){const P=s==='all'?BPL:D.bp[+s].items;it=shuf(P).slice(0,n).map(p=>{const e=shuf(p.ex)[0];const m=mk(e[1],P.flatMap(x=>x.ex.map(y=>y[1])),BPL.flatMap(x=>x.ex.map(y=>y[1])));return{h:`<div style='text-align:center'>${sayBtn(e[0])}<p class='mu'>Ketuk speaker, dengarkan, lalu pilih artinya.</p></div>`,o:m.o.map(esc),k:m.k,st:'bp',sec:'Dengar',rev:rb(e[0])}})}
   else if(!pool.length){toast('Daftar sulit masih kosong. Tandai dulu beberapa kanji.');return}
   else if(t==='bc'&&s==='all')it=shuf(D.kq.map((_,i)=>i)).slice(0,n).map(bcQ);
@@ -1193,8 +2088,10 @@ function zGo(){
   else it=shuf(pool).slice(0,n).map(k=>kkQ(k,pool));
   Z.items=it;Z.i=0;Z.ok=0;qdraw()
 }
-function zWrong(st){const ix=shuf(S.wr[st].filter(i=>(st==='bp'?D.bq:D.kq)[i])).slice(0,10);if(!ix.length){toast('Belum ada soal yang salah.');return}Z.exam=0;Z.items=ix.map(st==='bp'?bunQ:bcQ);Z.i=0;Z.ok=0;qdraw()}
-function qdraw(){if(Z.i>=Z.items.length)return Z.exam?exEnd():zEnd();const q=Z.items[Z.i];Z.pick=false;app.innerHTML=`<p class='mu'>Soal ${Z.i+1} dari ${Z.items.length} · ${Z.exam?`sisa waktu <b id='tm'>${fmt(Z.left)}</b>`:'benar '+Z.ok}</p><div class='q'>${q.h}</div>`+q.o.map((o,j)=>`<button class='opt' data-o='${j}'>${o}</button>`).join('')+`<div id='fd'></div>`}
+function zWrong(st){const ok=i=>st==='bp'?D.bq[i]:st==='kj'?D.kq[i]:TANGO[i],mkq=i=>st==='bp'?bunQ(i):st==='kj'?bcQ(i):tgQ(TANGO[i],'tg'),ix=shuf((S.wr[st]||[]).filter(ok)).slice(0,10);if(!ix.length){toast('Belum ada soal yang salah.');return}Z.exam=0;Z.items=ix.map(mkq);Z.i=0;Z.ok=0;qdraw()}
+function qdraw(){if(Z.i>=Z.items.length)return Z.exam?exEnd():zEnd();const q=Z.items[Z.i];Z.pick=false;app.innerHTML=`<p class='mu'>Soal ${Z.i+1} dari ${Z.items.length} · ${Z.exam?`sisa waktu <b id='tm'>${fmt(Z.left)}</b>`:'benar '+Z.ok}</p><div class='q'>${q.h}</div>`+(q.ans!=null?`<input type='text' id='ti' autocomplete='off' autocapitalize='off' placeholder='Ketik bacaan…' style='width:100%;padding:12px;border:1px solid var(--bd);border-radius:12px;background:var(--c);color:var(--tx);font-size:18px;margin-bottom:8px'><button class='btn' data-ty='1'>Periksa</button>`:q.o.map((o,j)=>`<button class='opt' data-o='${j}'>${o}</button>`).join(''))+`<div id='fd'></div>`}
+function tyAns(){if(Z.pick)return;const q=Z.items[Z.i],v=$('#ti').value.trim().toLowerCase();if(!v)return;Z.pick=true;const good=q.ans.includes(toH(rk(v)).replace(/\s/g,''));rec(q,good);$('#fd').innerHTML=`<p><b>${good?'Benar! ✓':'Kurang tepat. Jawabannya: '+esc(q.ans.join(' / '))}</b> ${sayBtn(q.ans[0])}</p>`+nxt()}
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='ti')tyAns()});
 function rec(q,good){const st=S.qz[q.st]||(S.qz[q.st]={n:0,ok:0});st.n++;bump('q',good,q.ix!=null?q.st+':'+q.ix:null);if(good){st.ok++;Z.ok++;if(q.ix!=null&&S.wr[q.st])S.wr[q.st]=S.wr[q.st].filter(x=>x!==q.ix)}else if(q.ix!=null&&S.wr[q.st]&&!S.wr[q.st].includes(q.ix))S.wr[q.st].push(q.ix);save()}
 const nxt=()=>`<button class='btn' data-x='3'>${Z.i+1>=Z.items.length?'Lihat hasil':'Lanjut'}</button>`;
 function answer(j){if(Z.pick)return;Z.pick=true;const q=Z.items[Z.i],good=j===q.k;if(Z.exam){Z.ans[Z.i]=j;rec(q,good);Z.i++;qdraw();return}
@@ -1205,7 +2102,7 @@ function exStart(){
     ...shuf(KANA).slice(0,5).map(x=>knQ(x,KANA)),
     ...shuf(PEMULA.verbs).slice(0,5).map(teQ),
     ...shuf(D.bq.map((_,i)=>i)).slice(0,8).map(bunQ),
-    ...shuf(TANGO).slice(0,4).map(tgQ),
+    ...shuf(TANGO).slice(0,4).map(w=>tgQ(w,'tg')),
     ...shuf(D.kq.map((_,i)=>i)).slice(0,4).map(bcQ),
     ...shuf(KJ).slice(0,4).map(k=>kaQ(k,KJ))
   ];
@@ -1231,17 +2128,17 @@ $('#mb').onclick=()=>{$('#mp').innerHTML=menuHTML();$('#mn').classList.add('on')
 const setS=()=>{save();applySet();refreshMenu()};
 let rsm=0;
 let PG={i:0};
-function weakHtml(){const Q=k=>S.qz[k]||{n:0,ok:0},A=[['Hiragana & Katakana',Q('kn')],['Bentuk-て',Q('te')],['Bunpou & Kosakata',Q('bp')],['Kanji',Q('kj')]].map(([n,a])=>({n,ok:a.ok,t:a.n})).filter(x=>x.t);if(!A.length)return`<div class='card'><b>Bagian yang masih lemah</b><p class='mu'>Belum ada data. Kerjakan kuis atau simulasi dulu.</p></div>`;A.forEach(x=>x.p=Math.round(x.ok/x.t*100));A.sort((a,b)=>a.p-b.p);return`<div class='card'><b>Bagian yang masih lemah</b><p class='mu' style='margin:4px 0 0'>Terlemah: <b style='color:var(--pk)'>${A[0].n}</b> (${A[0].p}%)</p>${A.map(x=>`<p style='margin:10px 0 2px'>${x.p<60?'🔴':x.p<80?'🟡':'🟢'} <b>${x.n}</b> <span class='mu'>${x.ok}/${x.t} · ${x.p}%${x.t<5?' · data masih sedikit':''}</span></p><div class='bar'><i style='width:${x.p}%'></i></div>`).join('')}</div>`}
+function weakHtml(){const Q=k=>S.qz[k]||{n:0,ok:0},A=[['Hiragana & Katakana',Q('kn')],['Bentuk-て',Q('te')],['Bunpou',Q('bp')],['Kosakata',Q('tg')],['Kanji',Q('kj')]].map(([n,a])=>({n,ok:a.ok,t:a.n})).filter(x=>x.t);if(!A.length)return`<div class='card'><b>Bagian yang masih lemah</b><p class='mu'>Belum ada data. Kerjakan kuis atau simulasi dulu.</p></div>`;A.forEach(x=>x.p=Math.round(x.ok/x.t*100));A.sort((a,b)=>a.p-b.p);return`<div class='card'><b>Bagian yang masih lemah</b><p class='mu' style='margin:4px 0 0'>Terlemah: <b style='color:var(--pk)'>${A[0].n}</b> (${A[0].p}%)</p>${A.map(x=>`<p style='margin:10px 0 2px'>${x.p<60?'🔴':x.p<80?'🟡':'🟢'} <b>${x.n}</b> <span class='mu'>${x.ok}/${x.t} · ${x.p}%${x.t<5?' · data masih sedikit':''}</span></p><div class='bar'><i style='width:${x.p}%'></i></div>`).join('')}</div>`}
 function vProgres(){
-  const t=day(),l=S.dy.log[t]||{c:0},g=S.dy.goal,st=streak(),nb=Object.keys(S.bp).length,nk=Object.keys(S.kj).length,nn=Object.keys(S.kn).length,pc=(n,m)=>m?Math.round(n/m*100):0,bars=[['Kana',pc(nn,NKN),nn+'/'+NKN],['Kanji',pc(nk,NKJ),nk+'/'+NKJ],['Bunpou',pc(nb,NBP),nb+'/'+NBP]],qs=['bp','kj','kn','te'].map(k=>S.qz[k]||{n:0,ok:0}),tn=qs.reduce((a,x)=>a+x.n,0),tk=qs.reduce((a,x)=>a+x.ok,0),ap=pc(tk,tn);
+  const t=day(),l=S.dy.log[t]||{c:0},g=S.dy.goal,st=streak(),nb=Object.keys(S.bp).length,nk=Object.keys(S.kj).length,nn=Object.keys(S.kn).length,pc=(n,m)=>m?Math.round(n/m*100):0,bars=[['Kana',pc(nn,NKN),nn+'/'+NKN],['Kanji',pc(nk,NKJ),nk+'/'+NKJ],['Bunpou',pc(nb,NBP),nb+'/'+NBP]],qs=['bp','kj','kn','te','tg'].map(k=>S.qz[k]||{n:0,ok:0}),tn=qs.reduce((a,x)=>a+x.n,0),tk=qs.reduce((a,x)=>a+x.ok,0),ap=pc(tk,tn);
   let cd='';if(S.exd){const n=exN();cd=n>0?`<b style='font-size:30px'>${n}</b> hari lagi <span class='mu'>(± ${Math.ceil(n/7)} minggu)</span>`:n===0?'<b>Hari ini ujian! 💪</b>':`<span class='mu'>Tanggal ujian sudah lewat. Pilih tanggal baru.</span>`}
-  const W=[...S.wr.bp.filter(i=>D.bq[i]).map(i=>['bp',i]),...S.wr.kj.filter(i=>D.kq[i]).map(i=>['kj',i])];if(PG.i>=W.length)PG.i=0;if(PG.i<0)PG.i=W.length-1;
-  let wq='';if(W.length){const[k,i]=W[PG.i],q=k==='bp'?bunQ(i):bcQ(i);wq=`<div style='border-left:3px solid var(--pk);padding-left:10px;margin:10px 0'><p class='mu' style='margin:0'>${q.sec}</p><div style='margin:6px 0'>${q.h}</div><p style='margin:0'>Jawaban: <b>${q.o[q.k]}</b></p></div><div class='seg'><button data-pw='-1'>‹ Sebelumnya</button><button data-pw='1'>Berikutnya ›</button></div>`}
-  const NM={bp:'Bunpou',kj:'Kanji'};
+  const W=[...S.wr.bp.filter(i=>D.bq[i]).map(i=>['bp',i]),...S.wr.kj.filter(i=>D.kq[i]).map(i=>['kj',i]),...S.wr.tg.filter(i=>TANGO[i]).map(i=>['tg',i])];if(PG.i>=W.length)PG.i=0;if(PG.i<0)PG.i=W.length-1;
+  let wq='';if(W.length){const[k,i]=W[PG.i],q=k==='bp'?bunQ(i):k==='kj'?bcQ(i):tgQ(TANGO[i],'tg');wq=`<div style='border-left:3px solid var(--pk);padding-left:10px;margin:10px 0'><p class='mu' style='margin:0'>${q.sec}</p><div style='margin:6px 0'>${q.h}</div><p style='margin:0'>Jawaban: <b>${q.o[q.k]}</b></p></div><div class='seg'><button data-pw='-1'>‹ Sebelumnya</button><button data-pw='1'>Berikutnya ›</button></div>`}
+  const NM={bp:'Bunpou',kj:'Kanji',tg:'Kosakata'};
   app.innerHTML=`<h2>Progres belajar</h2>
 <div class='card' style='display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center'><div style='text-align:center'><div style='font-size:32px'>🔥</div><b style='font-size:26px'>${st}</b><div class='mu' style='font-size:12px'>hari beruntun</div></div><div><p style='margin:0 0 6px'>Hari ini: <b>${l.c}</b> dari ${g} kartu ${l.c>=g?'🎉':''}</p><div class='bar'><i style='width:${Math.min(100,l.c/g*100)}%'></i></div><div class='seg' style='margin-top:8px;flex-wrap:nowrap'>${[10,20,30,50].map(n=>`<button data-gp='${n}' class='${g===n?'on':''}'>${n}</button>`).join('')}</div></div></div>
 <div style='display:grid;grid-template-columns:1.15fr 1fr;gap:12px;margin-bottom:12px'><div class='card' style='margin:0'><b>Hafal</b><div style='display:flex;align-items:flex-end;gap:8px;height:140px;margin-top:8px'>${bars.map(b=>`<div style='flex:1;text-align:center;font-size:11px'>${b[1]}%<div style='height:${b[1]*.8}px;min-height:3px;background:var(--bl);border-radius:4px 4px 0 0'></div>${b[0]}<div class='mu' style='font-size:10px'>${b[2]}</div></div>`).join('')}</div></div><div class='card' style='margin:0;text-align:center'><b>Akurasi</b><div style='width:104px;height:104px;margin:10px auto 0;border-radius:50%;background:conic-gradient(var(--gr) ${ap*3.6}deg,var(--bd) 0);display:grid;place-items:center'><div style='width:80px;height:80px;border-radius:50%;background:var(--c);display:grid;place-items:center'><b style='font-size:22px'>${ap}%</b></div></div><p class='mu' style='font-size:12px;margin:8px 0 0'>${tk} benar dari ${tn} jawaban</p></div></div>
-${weakHtml()}<div class='card'><div style='display:flex;justify-content:space-between'><b>Soal yang masih salah</b><span class='mu'>${W.length?`Soal ${PG.i+1}/${W.length}`:''}</span></div>${W.length?wq+`<div class='seg' style='margin-top:10px'>${['bp','kj'].map(k=>`<button data-pz='${k}'>Latih ${NM[k]} (${W.filter(x=>x[0]===k).length})</button>`).join('')}</div>`:`<p class='mu'>Belum ada soal yang salah 🎉</p>`}</div>
+${weakHtml()}<div class='card'><div style='display:flex;justify-content:space-between'><b>Soal yang masih salah</b><span class='mu'>${W.length?`Soal ${PG.i+1}/${W.length}`:''}</span></div>${W.length?wq+`<div class='seg' style='margin-top:10px'>${['bp','kj','tg'].map(k=>`<button data-pz='${k}'>Latih ${NM[k]} (${W.filter(x=>x[0]===k).length})</button>`).join('')}</div>`:`<p class='mu'>Belum ada soal yang salah 🎉</p>`}</div>
 ${statsHTML()}
 <div class='card'><b>Ulangan (SRS)</b><p>${Object.values(S.srs).filter(s=>s.d<=day()).length} kartu jatuh tempo hari ini</p><p>${Object.keys(S.srs).length} kartu dipelajari · ${Object.keys(S.hd).length} ditandai sulit</p></div>
 <div class='card'><b>Hitung mundur ujian</b><div style='display:flex;gap:12px;align-items:center;margin-top:8px;flex-wrap:wrap'><input type='date' id='exd' value='${esc(S.exd||'')}' style='padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--c);color:var(--tx);font:inherit'><div>${cd||`<span class='mu'>Pilih tanggal ujianmu</span>`}</div></div></div>
@@ -1265,8 +2162,8 @@ if(d.rt){S.set.rate=+d.rt;setS();return}
 if(d.test){say('こんにちは。にほんごのとびらへ、ようこそ。');return}
 if(d.bk==='make'){const code=btoa(unescape(encodeURIComponent(JSON.stringify({v:3,lv:CFG.level,bp:S.bp,kj:S.kj,kn:S.kn,qz:S.qz,wr:S.wr,srs:S.srs,hd:S.hd,nt:S.nt,dy:S.dy,ex:S.ex,exd:S.exd||''}))));S.bk=Date.now();save();$('#bk').value=code;$('#bk').select();try{navigator.clipboard.writeText(code).then(()=>toast('Kode disalin'),()=>toast('Salin kode dari kotak teks'))}catch(x){toast('Salin kode dari kotak teks')}return}
 if(d.bk==='rest'){try{const o=JSON.parse(decodeURIComponent(escape(atob($('#bk').value.trim()))));if(!o||typeof o.bp!=='object'||typeof o.kj!=='object')throw 0;if(o.lv&&o.lv!==CFG.level){toast('Kode cadangan ini untuk level '+o.lv);return}S.bp=o.bp;S.kj=o.kj;S.kn=o.kn||{};S.qz=o.qz||S.qz;S.wr=o.wr||S.wr;S.srs=o.srs||{};S.hd=o.hd||{};S.nt=o.nt||{};S.dy=o.dy||{goal:20,log:{}};S.ex=o.ex||null;S.exd=typeof o.exd==='string'?o.exd:'';fixS();save();toast('Progres dipulihkan');route()}catch(x){toast('Kode tidak valid')}return}
-if(d.rst){if(rsm){S.bp={};S.kj={};S.kn={};S.srs={};S.hd={};S.nt={};S.dy={goal:20,log:{}};S.ex=null;S.qz={bp:{n:0,ok:0},kj:{n:0,ok:0},kn:{n:0,ok:0},te:{n:0,ok:0}};S.wr={bp:[],kj:[]};save();rsm=0;refreshMenu();toast('Progres direset');route()}else{rsm=1;t.textContent='Yakin? Ketuk sekali lagi'}return}
-if(d.dm){DM=d.dm;vDasar();return}
+if(d.rst){if(rsm){S.bp={};S.kj={};S.kn={};S.srs={};S.hd={};S.nt={};S.dy={goal:20,log:{}};S.ex=null;S.qz={bp:{n:0,ok:0},kj:{n:0,ok:0},kn:{n:0,ok:0},te:{n:0,ok:0},tg:{n:0,ok:0}};S.wr={bp:[],kj:[],tg:[]};save();rsm=0;refreshMenu();toast('Progres direset');route()}else{rsm=1;t.textContent='Yakin? Ketuk sekali lagi'}return}
+if(d.dm!==undefined){DM=d.dm;vDasar();scrollTo(0,0);return}
 if(d.sbadd!==undefined){if(SBSIM.checked!==null)return;const idx=+d.sbadd;if(!SBSIM.picked.includes(idx)){SBSIM.picked.push(idx);drawDasar()}return}
 if(d.sbrm!==undefined){if(SBSIM.checked!==null)return;SBSIM.picked.splice(+d.sbrm,1);drawDasar();return}
 if(d.sbclr){SBSIM.picked=[];SBSIM.checked=null;drawDasar();return}
@@ -1296,14 +2193,14 @@ else if(d.knh){const c=d.knh;S.kn[c]?delete S.kn[c]:S.kn[c]=1;save();document.qu
 else if(d.x==='1')$('#sheet').classList.remove('on');
 else if(d.x==='2')vLatihan();
 else if(d.x==='3'){Z.i++;qdraw()}
-else if(d.z)zGo();else if(d.zw)zWrong(d.zw);else if(d.zt){ZC.t=d.zt;ZC.s='all';vLatihan()}else if(d.zn){ZC.n=+d.zn;vLatihan()}else if(d.ex)exStart();
+else if(d.z)zGo();else if(d.zw)zWrong(d.zw);else if(d.zt){ZC.t=d.zt;ZC.s='all';vLatihan()}else if(d.zn){ZC.n=+d.zn;vLatihan()}else if(d.ty)tyAns();else if(d.ex)exStart();
 else if(d.o!==undefined)answer(+d.o);
 else if(t.classList.contains('fc')){SR.flip=!SR.flip;sdraw()}});
 (function(){const b=document.createElement('div');b.id='sk';b.setAttribute('aria-hidden','true');for(let n=0;n<14;n++){const p=document.createElement('i'),s=9+Math.random()*9;p.style.cssText=`left:${Math.random()*100}%;--s:${s.toFixed(1)}px;--d:${(11+Math.random()*9).toFixed(1)}s;--l:-${(Math.random()*18).toFixed(1)}s;--x:${(Math.random()*90-30).toFixed(0)}px`;b.appendChild(p)}document.body.appendChild(b);document.addEventListener('visibilitychange',()=>{b.style.display=document.hidden?'none':''})})();
 document.addEventListener('change',e=>{const t=e.target;if(t&&t.id==='exd'){S.exd=t.value||'';save();vProgres()}});
 function mpOpen(){$('#mpop').classList.add('on')}
 $('#mt').addEventListener('click',e=>{e.stopPropagation();const p=$('#mpop');p.classList.contains('on')?p.classList.remove('on'):mpOpen()});
-$('#mpop').addEventListener('click',e=>{const a=e.target.closest('a');if(!a)return;$('#mpop').classList.remove('on');if(a.hash===location.hash)route()});
+$('#mpop').addEventListener('click',e=>{const a=e.target.closest('a');if(!a)return;$('#mpop').classList.remove('on');if(a.hash==='#dasar')DM='';if(a.hash===location.hash)route()});
 document.addEventListener('click',e=>{const p=$('#mpop');if(p.classList.contains('on')&&!e.target.closest('#mpop')&&!e.target.closest('#mt'))p.classList.remove('on')});
 route();
 </script><script>if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));</script></body></html>
